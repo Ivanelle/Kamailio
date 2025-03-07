@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import SoundButton from './SoundButton';
-import NextPrevButton from './NextPrevButton';
-import HeartButton from './HeartButton';
+// import SoundButton from './SoundButton';
+// import NextPrevButton from './NextPrevButton';
+// import HeartButton from './HeartButton';
 
 interface WordCardProps {
   currentWord: {
@@ -21,14 +21,14 @@ const WordCard: React.FC<WordCardProps> = ({ currentWord, onNextWord, isWordChan
     <View style={styles.container}>
     <Text style={styles.mainWord}>{currentWord.hawaiianWord}</Text>
     <View style={styles.buttonsContainer}>
-      <SoundButton isWordChanged={isWordChanged} />
-      <HeartButton word={currentWord} /> 
+      {/* <SoundButton isWordChanged={isWordChanged} />
+      <HeartButton word={currentWord} />  */}
 
     </View>
     <Text style={styles.pronunciation}>/{currentWord.pronunciation}/</Text>
     <Text style={styles.type}>{currentWord.type}</Text>
     <Text style={styles.translation}>{currentWord.englishTranslation}</Text>
-   <NextWordButton onPress={onNextWord} />
+   {/* <NextWordButton onPress={onNextWord} /> */}
   </View>
   );
 };
