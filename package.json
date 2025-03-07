@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-native": "^0.78.0"
+    "react-native": "^0.78.0",
+    "typescript": "^5.8.2"
   }
 }
