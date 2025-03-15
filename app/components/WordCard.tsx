@@ -1,82 +1,55 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-// import SoundButton from './SoundButton';
-// import NextPrevButton from './NextPrevButton';
-// import HeartButton from './HeartButton';
+import HeartButton from './HeartButton';
 
-interface WordCardProps {
-  currentWord: {
-    id: number;
-    hawaiianWord: string;
-    pronunciation: string;
-    type: string;
-    englishTranslation: string;
-  };
-  onNextWord: () => void;
-  isWordChanged: boolean;
-}
-
-const WordCard: React.FC<WordCardProps> = ({ currentWord, onNextWord, isWordChanged }) => {
+const WordCard = ({ word }) => {
   return (
-    <View style={styles.container}>
-    <Text style={styles.mainWord}>{currentWord.hawaiianWord}</Text>
-    <View style={styles.buttonsContainer}>
-      {/* <SoundButton isWordChanged={isWordChanged} />
-      <HeartButton word={currentWord} />  */}
-
+    <View style={styles.card}>
+      <Text style={styles.hawaiianWord}>{word.hawaiianWord}</Text>
+      <Text style={styles.translation}>{word.englishTranslation}</Text>
+      <Text style={styles.pronunciation}>{word.pronunciation}</Text>
+      <Text style={styles.example}>{word.example}</Text>
+      <HeartButton word={word} />
     </View>
-    <Text style={styles.pronunciation}>/{currentWord.pronunciation}/</Text>
-    <Text style={styles.type}>{currentWord.type}</Text>
-    <Text style={styles.translation}>{currentWord.englishTranslation}</Text>
-   {/* <NextWordButton onPress={onNextWord} /> */}
-  </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginVertical: 20,
-    padding: 15,
-    backgroundColor: '#F7F7F7',
-    borderRadius: 10,
+  card: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderLeftWidth: 6,
+    borderLeftColor: '#29b0ff',
   },
-  mainWord: {
-    fontSize: 48,
+  hawaiianWord: {
+    fontSize: 26,
     fontWeight: 'bold',
-    color: '#07607b',
-    marginBottom: 10,
-    letterSpacing: 1,
-  },
-  pronunciation: {
-    fontSize: 18,
-    color: '#4eacb8',
-    marginBottom: 5,
-    fontStyle: 'italic',
-  },
-  type: {
-    fontSize: 14,
-    color: '#b8e7ca',
-    marginRight: 10,
-    fontWeight: '500',
-    textTransform: 'uppercase',
+    color: '#ff6e61',
+    marginBottom: 8,
   },
   translation: {
-    fontSize: 35,
-    color: '#6cd1af',
-    fontWeight: '600',
-    marginTop: 10,
+    fontSize: 18,
+    color: '#2c3e50',
+    marginBottom: 8,
   },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
+  pronunciation: {
+    fontSize: 16,
+    color: '#ffa142',
+    marginBottom: 8,
+    fontStyle: 'italic',
+  },
+  example: {
+    fontSize: 16,
+    color: '#88d8b0',
+    marginBottom: 16,
+    fontStyle: 'italic',
   },
 });
 
