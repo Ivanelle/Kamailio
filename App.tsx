@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
 import WordCard from './components/WordCard';
+import NavigationButtons from './components/NavigationButtons';
 import hawaiianWords from './dummydata/hawaiianWords';
 
 const App: React.FC = () => {
-  // Function to pick a random word
-  const getRandomWord = () => {
-    const randomIndex = Math.floor(Math.random() * hawaiianWords.length);
-    return hawaiianWords[randomIndex];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Function to go to the next word
+  const goToNextWord = () => {
+    if (currentIndex < hawaiianWords.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
   };
 
-  // State to hold the current random word
-  const [randomWord, setRandomWord] = useState(getRandomWord());
-
-  // Function to update the random word
-  const pickRandomWord = () => {
-    const newRandomWord = getRandomWord();
-    setRandomWord(newRandomWord);
+  // Function to go to the previous word
+  const goToPreviousWord = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <WordCard word={randomWord} />
-        <TouchableOpacity onPress={pickRandomWord} style={styles.button}>
-          <Text style={styles.buttonText}>Show Random Word</Text>
-        </TouchableOpacity>
+        <WordCard word={hawaiianWords[currentIndex]} />
+        <NavigationButtons
+          onNext={goToNextWord}
+          onPrevious={goToPreviousWord}
+          isFirst={currentIndex === 0}
+          isLast={currentIndex === hawaiianWords.length - 1}
+        />
       </View>
     </SafeAreaView>
   );
@@ -41,16 +46,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: '#29b0ff', // Accent color
-    padding: 12,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
   },
 });
 
