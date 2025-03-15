@@ -4,9 +4,20 @@ import WordCard from './components/WordCard';
 import hawaiianWords from './dummydata/hawaiianWords';
 
 const App: React.FC = () => {
+  // Function to pick a random word
+  const getRandomWord = () => {
+    const randomIndex = Math.floor(Math.random() * hawaiianWords.length);
+    return hawaiianWords[randomIndex];
+  };
 
   // State to hold the current random word
-  const [randomWord, setRandomWord] = useState(Math.floor(Math.random() * hawaiianWords.length));
+  const [randomWord, setRandomWord] = useState(getRandomWord());
+
+  // Function to update the random word
+  const pickRandomWord = () => {
+    const newRandomWord = getRandomWord();
+    setRandomWord(newRandomWord);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
